@@ -10,11 +10,8 @@ if (localStorage.getItem('feedback-form-state') !== null) {
     formData.email = localData.email;
     formData.message = localData.message;
 }
-
-
-console.log(formData.message)
- textarea.value = formData.message;
-    input.value = formData.email;
+textarea.value = formData.message;
+input.value = formData.email;
 
 
 
@@ -27,7 +24,13 @@ form.addEventListener("input", function (event) {
 
 form.addEventListener("submit", event => {
     event.preventDefault();
+    
+    if (!(formData.email && formData.message)) {
+        alert("Fill please all fields");
+        return
+    }
     localStorage.removeItem('feedback-form-state');
+    console.log(formData);
     form.reset();
 })
 
